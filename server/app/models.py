@@ -1,6 +1,7 @@
-from database import Base
-from sqlalchemy import Column, Integer, String, Boolean
+from datetime import datetime
+from sqlalchemy import Column, Integer, String, Boolean, DateTime
 from sqlalchemy.orm import validates
+from app.config import Base
 
 
 class Todo(Base):
@@ -10,6 +11,8 @@ class Todo(Base):
     title = Column(String)
     priority = Column(Integer, default=5)
     complete = Column(Boolean, default=False)
+    created_at = Column(DateTime, default=datetime.utcnow)
+    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
     @validates("priority")
     def validate_priority(self, key, priority):

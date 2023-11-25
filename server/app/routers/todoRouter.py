@@ -20,9 +20,10 @@ def get_db():
 def get_todos(
     q: str | None = None,
     sortDirection: int | None = None,
+    complete: bool | None = None,
     db: Session = Depends(get_db),
 ):
-    return todoService.get_todos(db, sortDirection, q)
+    return todoService.get_todos(db, sortDirection, q, complete)
 
 
 @router.post("/", status_code=status.HTTP_201_CREATED)

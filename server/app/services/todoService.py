@@ -3,16 +3,26 @@ from app.models import Todo
 from app.schemas import TodoSchema, TodoSchemaOptional
 
 
-def get_todos(db: Session, sortDirection, q):
+def get_todos(
+    db: Session,
+    sortDirection: int | None,
+    searchQuery: str | None,
+    complete: bool | None,
+) -> list[Todo]:
     todos = db.query(Todo)
+    # check complete
+    if complete is not None:
+        todos = todos.filter(Todo.complete == complete)
+        # check search query
+    if searchQuery is not None:
+        todos = todos.filter(Todo.title.icontains(searchQuery))
+    # check sort direction
     if sortDirection == 1:
-        todos = todos.order_by(Todo.priority.desc())
-    elif sortDirection == -1:
         todos = todos.order_by(Todo.priority.asc())
+    elif sortDirection == -1:
+        todos = todos.order_by(Todo.priority.desc())
     else:
-        todos = todos.order_by(Todo.updated_at.desc())
-    if q is not None:
-        todos = todos.filter(Todo.title.icontains(q))
+        todos = todos.order_by(Todo.created_at.desc())
     return todos.all()
 
 
@@ -24,7 +34,7 @@ def create_todo(db: Session, todo: TodoSchema):
     return new_todo
 
 
-def get_todo_by_id(db: Session, id):
+def get_todo_by_id(db: Session, id: int):
     return db.query(Todo).filter(Todo.id == id).one_or_none()
 
 
@@ -41,4 +51,3 @@ def update_todo_by_id(db: Session, todo_db: Todo, todo: TodoSchemaOptional):
 def delete_todo_by_id(db: Session, todo_db: Todo):
     db.delete(todo_db)
     db.commit()
-    return

@@ -3,7 +3,7 @@
 import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import Modal from './Modal';
+import Modal from '../UI/Modal';
 import TaskForm from './TaskForm';
 import { TTaskSchema, taskSchema } from '@/lib/schemas/task';
 

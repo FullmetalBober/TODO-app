@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { Card, CardBody, CardFooter } from '@nextui-org/card';
 import { Checkbox } from '@nextui-org/checkbox';
-import Modal from './Modal';
+import Modal from '../UI/Modal';
 import TaskInfo from './TaskInfo';
 import { TTaskSchema } from '@/lib/schemas/task';
 

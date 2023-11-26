@@ -1,7 +1,7 @@
 'use client';
 
 import { Accordion, AccordionItem } from '@nextui-org/accordion';
-import RadioGrp from './RadioGrp';
+import RadioGrp from '../UI/RadioGrp';
 import useQueryParams from '@/app/hooks/useQueryParams';
 
 const dataFilter = [

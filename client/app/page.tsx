@@ -1,7 +1,7 @@
-import CreateTask from '@/components/CreateTask';
-import Filter from '@/components/Filter';
-import Search from '@/components/Search';
-import Tasks from '@/components/Tasks';
+import CreateTask from '@/components/Form/CreateTask';
+import Tasks from '@/components/Task/Tasks';
+import Filter from '@/components/Util/Filter';
+import Search from '@/components/Util/Search';
 
 export default function Home() {
   return (

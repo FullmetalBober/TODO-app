@@ -8,14 +8,15 @@ import Task from './Task';
 
 const Tasks = () => {
   const searchParams = useSearchParams().toString();
-  // const searchParam = searchParams.get('q');
-  // const sortDirectionParam = searchParams.get('sortDirection');
-  // const statusParam = searchParams.get('status');
 
   const taskQuery = useQuery<TTaskSchema[]>({
     queryKey: ['tasks', searchParams],
-    queryFn: () => {
-      return fetch(`/api/todos?${searchParams}`).then(res => res.json()) || [];
+    queryFn: ({ signal }) => {
+      return (
+        fetch(`/api/todos?${searchParams}`, {
+          signal,
+        }).then(res => res.json()) || []
+      );
     },
   });
 

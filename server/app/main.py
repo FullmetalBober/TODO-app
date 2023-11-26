@@ -5,8 +5,6 @@ from app.routers import todoRouter
 from app.config import engine
 from app import models
 
-origins = ["http://localhost:3000"]
-
 
 def init_app():
     models.Base.metadata.create_all(bind=engine)
@@ -18,7 +16,7 @@ def init_app():
 
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=origins,
+        allow_origins=["*"],
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],

@@ -22,3 +22,4 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
 start = "app.main:start"
+start_prod = "app.main:start_prod"
